@@ -1,9 +1,12 @@
-# assignment_module_pattern
-So modular.
+Whack - a  - Gopher
+======================
 
-[A JavaScript Module Pattern assignment utilizing scope and closures from the Viking Code School](http://www.vikingcodeschool.com)
+## Whack-a-Mole with a surprise twist
 
+#[Click Here to Play](https://htmlpreview.github.io/?https://github.com/SampsonCrowley/whack-a-gopher/blob/master/index.html)
 
+<br>
+<br>
 ### Contributors
 
 [Sampson Crowley](https://github.com/SampsonCrowley)
