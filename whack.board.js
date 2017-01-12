@@ -29,6 +29,7 @@ WHACK.Board = (function(){
 
   var init = function init(callbacks){
     listeners(callbacks);
+    setupBoard();
   }
 
   return {

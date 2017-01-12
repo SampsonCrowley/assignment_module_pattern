@@ -39,7 +39,7 @@ WHACK.Mole = (function() {
     return {
       pissedOff: pissedOff,
       starving: starving,
-      blandiloquate: blandiloquate;
+      blandiloquate: blandiloquate,
       wreck: wreck,
       cheecky: isCheeky
     }
