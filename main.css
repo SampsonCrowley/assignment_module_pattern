@@ -11,6 +11,7 @@ whack-a-mole {
   height: 100%;
   margin: auto;
   border: 6px groove gold;
+  cursor: none;
 }
 
 h1 {
@@ -21,6 +22,7 @@ h1 {
 whack-a-mole .hammer {
   z-index: 1;
   position: absolute;
+  display: block;
   top: 100%;
   left: 100%;
   max-width: 100px;
