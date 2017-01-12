@@ -1,5 +1,7 @@
+var WHACK = WHACK || {};
+
 (function(){
-  window.WHACK = WHACK || {}
+  window.WHACK = WHACK;
 
   var readyBound = false;
   var isReady = false;
@@ -87,16 +89,16 @@
   WHACK.run = function(fn, args) {
 
 
-    // // If the DOM is already ready
-    // if (isReady) {
-    //   // Execute the function immediately
-    //   WHACK.Controller.init.apply(WHACK.Controller);
-    // } else {
-    //   // Attach the listeners
-    //   bindReady();
-    //   // Add the function to the wait list
-    //   readyList.push( function() { return WHACK.Controller.init.apply(WHACK.Controller); } );
-    // }
+    // If the DOM is already ready
+    if (isReady) {
+      // Execute the function immediately
+      WHACK.Controller.init.apply(WHACK.Controller);
+    } else {
+      // Attach the listeners
+      bindReady();
+      // Add the function to the wait list
+      readyList.push( function() { return WHACK.Controller.init.apply(WHACK.Controller); } );
+    }
   };
 
   bindReady();

@@ -1,3 +1,24 @@
-.mole {
+*, html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+whack-a-mole {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 6px groove gold;
+}
+
+whack-a-mole .mole {
+  display: block;
+  width: calc(100% / 8);
+  height: 200px;
+  background-image: url(https://c1.staticflickr.com/1/103/250640481_c16b56b58d_b.jpg);
+}
+
+whack-a-mole .mole.cheeky {
   background-image: url(https://s-media-cache-ak0.pinimg.com/originals/a2/84/6a/a2846a6f95845fef4909a3da7e0c8577.jpg)
 }

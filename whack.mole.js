@@ -1,4 +1,4 @@
-WHACK = WHACK || {}
+var WHACK = WHACK || {};
 
 WHACK.Mole = (function() {
   var moles = [];
@@ -12,29 +12,29 @@ WHACK.Mole = (function() {
     var emitScreech = function emitScreech () {
       console.log(_screech);
       return _screech;
-    }
+    };
 
     var isCheeky = function isCheeky() {
       return !!cheekyBastard;
-    }
+    };
 
     var wreck = function wreck() {
       cheekyBastard = false;
       return isCheeky();
-    }
+    };
 
     var blandiloquate = function blandiloquate() {
       cheekyBastard = true;
       return isCheeky();
-    }
+    };
 
     var starving = function starving() {
       return _hungry;
-    }
+    };
 
     var pissedOff = function pissedOff() {
       return _angry;
-    }
+    };
 
     return {
       pissedOff: pissedOff,
@@ -43,12 +43,11 @@ WHACK.Mole = (function() {
       wreck: wreck,
       cheecky: isCheeky
     }
-  }
-
+  };
 
   var getMoles = function(){
     return moles;
-  }
+  };
 
   var addMole = function(){
     moles.push(Mole())

@@ -1,4 +1,4 @@
-WHACK = WHACK || {}
+var WHACK = WHACK || {};
 
 WHACK.Board = (function(){
   var _board,
@@ -6,18 +6,20 @@ WHACK.Board = (function(){
   var createBoard = function createBoard() {
     var board = document.createElement("WHACK-A-MOLE");
     document.body.appendChild(board);
+    return board;
   }
 
   var createSquares = function createSquares() {
-    for(i = _squares.length -1; i < 8; i++){
+    for(i = _squares.length; i < 8; i++){
       var square = document.createElement("DIV");
-      
+      square.classList.add("mole");
+      _board.appendChild(square);
     }
   }
 
   var setupBoard = function setupBoard(){
-    _board = document.getElementsByTagName("WHACK-A-MOLE")[0] || createBoard()
-    _squares = document.getElementsByClassName("mole")
+    _board = document.getElementsByTagName("WHACK-A-MOLE")[0] || createBoard();
+    _squares = _board.getElementsByClassName("mole");
     if(_squares.length < 8) createSquares();
   }
 
