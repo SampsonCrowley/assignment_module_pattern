@@ -7,18 +7,21 @@
 whack-a-mole {
   display: block;
   position: relative;
-  width: 100%;
+  width: 812px;
   height: 100%;
+  margin: auto;
   border: 6px groove gold;
 }
 
 whack-a-mole .mole {
-  display: block;
-  width: calc(100% / 8);
+  display: inline-block;
+  width: 200px;
   height: 200px;
-  background-image: url(https://c1.staticflickr.com/1/103/250640481_c16b56b58d_b.jpg);
+  background: url(https://c1.staticflickr.com/1/103/250640481_c16b56b58d_b.jpg) center no-repeat;
+  background-size: contain;
 }
 
 whack-a-mole .mole.cheeky {
-  background-image: url(https://s-media-cache-ak0.pinimg.com/originals/a2/84/6a/a2846a6f95845fef4909a3da7e0c8577.jpg)
+  background: url(https://s-media-cache-ak0.pinimg.com/originals/a2/84/6a/a2846a6f95845fef4909a3da7e0c8577.jpg) center no-repeat;
+  background-size: contain;
 }

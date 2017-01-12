@@ -41,9 +41,22 @@ WHACK.Mole = (function() {
       starving: starving,
       blandiloquate: blandiloquate,
       wreck: wreck,
-      cheecky: isCheeky
+      cheeky: isCheeky
     }
   };
+
+  var randomCheeky = function randomCheeky(){
+    if(Math.random() > .7){
+      var moles = getMoles()
+      var cheekyMole = moles[Math.floor(Math.random() * moles.length)];
+      cheekyMole.blandiloquate();
+    }
+  }
+
+  var click = function click(id){
+    var clickedMole = getMoles()[+id];
+    clickedMole.wreck();
+  }
 
   var getMoles = function(){
     return moles;
@@ -53,10 +66,17 @@ WHACK.Mole = (function() {
     moles.push(Mole())
     return getMoles();
   };
+  var init = function init (){
+    for(i = 0; i < 8; i++){
+      addMole();
+    }
+  }
 
   return {
+    init: init,
     getMoles: getMoles,
-    addMole: addMole
+    random: randomCheeky,
+    click: click
   }
 
 })();
