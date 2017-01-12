@@ -29,6 +29,20 @@ whack-a-mole .hammer {
   max-height: 100px;
 }
 
+whack-a-mole .hammer.swing {
+  animation:spin .10s linear;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(-90deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(-90deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(-90deg); transform:rotate(-90deg); } }
+
+whack-a-mole .scoreboard {
+  display: block;
+  width: 100%;
+  z-index: 0;
+  font-size: 36px;
+}
+
 whack-a-mole .mole {
   display: inline-block;
   width: 200px;

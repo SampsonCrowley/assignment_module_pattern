@@ -1,13 +1,16 @@
 var WHACK = WHACK || {};
 
 WHACK.Mole = (function() {
-  var moles = [];
+  var moles = [],
+      score = 0,
+      multiplier = 1;
 
   var Mole = function Mole () {
     var cheekyBastard = false,
         _hungry = true,
         _angry = "maybe",
-        _screech = "AAARGH";
+        _screech = "AAARGH",
+        _timeout;
 
     var emitScreech = function emitScreech () {
       console.log(_screech);
@@ -20,11 +23,13 @@ WHACK.Mole = (function() {
 
     var wreck = function wreck() {
       cheekyBastard = false;
+      clearTimeout(_timeout)
       return isCheeky();
     };
 
     var blandiloquate = function blandiloquate() {
       cheekyBastard = true;
+      _timeout = setTimeout(wreck, 1000)
       return isCheeky();
     };
 
@@ -45,6 +50,14 @@ WHACK.Mole = (function() {
     }
   };
 
+ var _incrementScore = function _incrementScore(){
+   score += Math.floor(1 * multiplier);
+   multiplier += .4
+ }
+ var _destroyMultiplier = function _destroyMultiplier() {
+   multiplier = 1;
+ }
+
   var randomCheeky = function randomCheeky(){
     if(Math.random() > .7){
       var moles = getMoles()
@@ -55,6 +68,11 @@ WHACK.Mole = (function() {
 
   var click = function click(id){
     var clickedMole = getMoles()[+id];
+    if(clickedMole.cheeky()){
+      _incrementScore();
+    } else {
+      _destroyMultiplier();
+    }
     clickedMole.wreck();
   }
 
@@ -62,19 +80,24 @@ WHACK.Mole = (function() {
     return moles;
   };
 
-  var addMole = function(){
+  var getScore = function getScore() {
+    return score;
+  }
+
+  var _addMole = function(){
     moles.push(Mole())
     return getMoles();
   };
   var init = function init (){
     for(i = 0; i < 8; i++){
-      addMole();
+      _addMole();
     }
   }
 
   return {
     init: init,
-    getMoles: getMoles,
+    moles: getMoles,
+    score: getScore,
     random: randomCheeky,
     click: click
   }

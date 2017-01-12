@@ -10,13 +10,24 @@ WHACK.Board = (function(){
     document.body.appendChild(board);
     return board;
   }
+  
+  var createEl = function createEl(tag) {
+    return document.createElement(tag);
+  }
 
   var createMoles = function createMoles() {
     for(i = _moles.length; i < 8; i++){
-      var square = document.createElement("DIV");
+      var square = createEl("DIV");
       square.classList.add("mole");
       _board.appendChild(square);
     }
+  }
+  var createScoreBoard = function createScoreBoard() {
+    var scoreBoard = createEl("DIV");
+    scoreBoard.classList.add("scoreboard");
+    scoreBoard.innerHTML = "Score: ";
+    _board.appendChild(scoreBoard);
+    return scoreBoard;
   }
 
   var addMoleData = function addMoleData(){
@@ -28,6 +39,7 @@ WHACK.Board = (function(){
   var setupBoard = function setupBoard(){
     _board = document.getElementsByTagName("WHACK-A-MOLE")[0] || createBoard();
     _moles = _board.getElementsByClassName("mole");
+    _scoreBoard = _board.getElementsByClassName("scoreboard")[0] || createScoreBoard();
     if(_moles.length < 8) createMoles();
     addMoleData();
     _hammer = createHammer();
@@ -42,18 +54,41 @@ WHACK.Board = (function(){
   }
 
   var hammer = function(e) {
-    console.log(e.layerY)
     _hammer.setAttribute("style", "top: " + e.layerY + "px; left: " + e.layerX + "px")
-    // _hammer.style.top = (e.layerY || e.layerY + "px");
-    // _hammer.style.left = e.layerX;
-    console.log(_hammer.style.top)
-
   }
+
+  var swingHammer = function(){
+    _hammer.classList.add("swing")
+    animationEvent && _hammer.addEventListener(animationEvent, function() {
+      _hammer.classList.remove("swing")
+    });
+  }
+  /* From Modernizr */
+  function whichAnimationEvent(){
+      var t;
+      var el = document.createElement('fakeelement');
+      var animations = {
+        'animation':'animationend',
+        'OAnimation':'oAnimationEnd',
+        'MozAnimation':'animationend',
+        'WebkitAnimation':'webkitAnimationEnd'
+      }
+
+      for(t in animations){
+          if( el.style[t] !== undefined ){
+              return animations[t];
+          }
+      }
+  }
+
+  /* Listen for a animation! */
+  var animationEvent = whichAnimationEvent();
 
   var listeners = function(cb){
     if(cb.click){
       _board.addEventListener('click', function(e){
         cb.click(e.target.getAttribute("data-id"))
+        swingHammer()
       })
     }
     _board.addEventListener("mousemove", function(e){
@@ -66,7 +101,7 @@ WHACK.Board = (function(){
     listeners(callbacks);
   }
 
-  var render = function render(moleData){
+  var render = function render(moleData, score){
     for(i = 0; i < moleData.length; i++){
       if(moleData[i].cheeky()){
         _moles[i].classList.add("cheeky");
@@ -74,6 +109,7 @@ WHACK.Board = (function(){
         _moles[i].classList.remove("cheeky");
       }
     }
+    _scoreBoard.innerHTML = "Score: " + score
   }
 
   return {
