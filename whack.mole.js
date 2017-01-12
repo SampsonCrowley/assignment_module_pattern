@@ -3,7 +3,8 @@ var WHACK = WHACK || {};
 WHACK.Mole = (function() {
   var moles = [],
       score = 0,
-      multiplier = 1;
+      multiplier = 1,
+      audio = new Audio('wilhelm.mp3');
 
   var Mole = function Mole () {
     var cheekyBastard = false,
@@ -69,6 +70,9 @@ WHACK.Mole = (function() {
   var click = function click(id){
     var clickedMole = getMoles()[+id];
     if(clickedMole.cheeky()){
+      audio.pause()
+      audio.currentTime = 0
+      audio.play()
       _incrementScore();
     } else {
       _destroyMultiplier();
