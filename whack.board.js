@@ -2,7 +2,8 @@ var WHACK = WHACK || {};
 
 WHACK.Board = (function(){
   var _board,
-      _moles;
+      _moles,
+      _hammer;
 
   var createBoard = function createBoard() {
     var board = document.createElement("WHACK-A-MOLE");
@@ -28,18 +29,31 @@ WHACK.Board = (function(){
     _board = document.getElementsByTagName("WHACK-A-MOLE")[0] || createBoard();
     _moles = _board.getElementsByClassName("mole");
     if(_moles.length < 8) createMoles();
-    addMoleData()
+    addMoleData();
+    _hammer = createHammer();
+  }
+
+  var createHammer = function createHammer(){
+    var hammer = document.createElement("IMG");
+    hammer.src = "https://openclipart.org/image/2400px/svg_to_png/196484/wooden-mallet-magnesusversion.png";
+    hammer.classList.add("hammer");
+    _board.appendChild(hammer);
   }
 
   var listeners = function(cb){
-    console.log(cb)
     if(cb.click){
       _board.addEventListener('click', function(e){
-        console.log("clicked!")
-        console.log(e.target)
         cb.click(e.target.getAttribute("data-id"))
       })
     }
+    _board.addEventListener("mousemove", function(e){
+      hammer(e);
+    });
+  }
+
+  var hammer = function(e) {
+    _hammer.style.top = e.layerY;
+    _hammer.style.left = e.layerX;
   }
 
   var init = function init(callbacks){

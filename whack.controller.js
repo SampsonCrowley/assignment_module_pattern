@@ -9,10 +9,15 @@ WHACK.Controller = (function(board, mole){
     board.render(mole.getMoles());
   }
 
+  var click = function click(id) {
+    mole.click(id);
+    board.render(mole.getMoles());
+  }
+
   var runGame = function runGame(){
     interval = setInterval(function(){
       _gameLoop();
-    }, 1000)
+    }, 1000);
   }
 
   var pauseGame = function pauseGame(){
@@ -22,11 +27,10 @@ WHACK.Controller = (function(board, mole){
   var init = function init () {
     mole.init();    
     board.init({
-      click: mole.click
+      click: click
     });
     runGame();
   }
-
 
   return {
     init: init,

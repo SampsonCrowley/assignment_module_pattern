@@ -13,12 +13,27 @@ whack-a-mole {
   border: 6px groove gold;
 }
 
+h1 {
+  text-align: center;
+  font-style: italic;
+}
+
+whack-a-mole .hammer {
+  z-index: 1;
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  max-width: 100px;
+  max-height: 100px;
+}
+
 whack-a-mole .mole {
   display: inline-block;
   width: 200px;
   height: 200px;
   background: url(https://c1.staticflickr.com/1/103/250640481_c16b56b58d_b.jpg) center no-repeat;
   background-size: contain;
+  z-index: 0;
 }
 
 whack-a-mole .mole.cheeky {
